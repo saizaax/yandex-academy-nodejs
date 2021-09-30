@@ -1,0 +1,14 @@
+{
+  "name": "yandex-academy-nodejs",
+  "version": "1.0.0",
+  "description": "Express Node.js backend for image-background replacement",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "xaazias",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
