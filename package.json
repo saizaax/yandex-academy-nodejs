@@ -4,11 +4,17 @@
   "description": "Express Node.js backend for image-background replacement",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "format": "prettier --write ."
   },
   "author": "xaazias",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "multer": "^1.4.3",
+    "nanoid": "^3.1.28"
+  },
+  "devDependencies": {
+    "prettier": "^2.4.1"
   }
 }

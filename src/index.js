@@ -1,8 +1,11 @@
 const express = require("express")
-const { PORT } = require("./config.json")
+const useMiddlewares = require("./middlewares")
+const { PORT } = require("./config/config")
 const { rootRouter } = require("./routers")
 
 const app = express()
+
+useMiddlewares(app)
 
 app.use("/", rootRouter)
 
