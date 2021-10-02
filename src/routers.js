@@ -13,12 +13,7 @@ rootRouter.get("/list", api.getImages)
 rootRouter.get("/image/:id", api.getImageById)
 
 /** Замена фона у изображения */
-rootRouter.get(
-  "/merge?front=<id>&back=<id>&color=145,54,32&threshold=5",
-  (req, res) => {
-    res.json({ ping: "pong" })
-  }
-)
+rootRouter.get("/merge", api.mergeImages)
 
 /* POST */
 

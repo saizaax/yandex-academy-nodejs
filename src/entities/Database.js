@@ -23,7 +23,13 @@ class Database extends EventEmitter {
 
       for (let id in dump.images) {
         const image = dump.images[id]
-        this.images[id] = new Image(image.id, image.createdAt)
+        this.images[id] = new Image(
+          image.size,
+          image.mimeType,
+          image.body,
+          image.id,
+          image.createdAt
+        )
       }
     }
   }
@@ -36,7 +42,13 @@ class Database extends EventEmitter {
 
   async remove(id) {
     const imageObject = this.images[id]
-    const image = new Image(imageObject.id, imageObject.createdAt)
+    const image = new Image(
+      imageObject.size,
+      imageObject.mimeType,
+      imageObject.body,
+      imageObject.id,
+      imageObject.createdAt
+    )
 
     await image.remove()
     delete this.images[id]
@@ -50,7 +62,13 @@ class Database extends EventEmitter {
 
     if (!imageObject) return null
 
-    const image = new Image(imageObject.id, imageObject.createdAt)
+    const image = new Image(
+      imageObject.size,
+      imageObject.mimeType,
+      imageObject.body,
+      imageObject.id,
+      imageObject.createdAt
+    )
     return image
   }
 
