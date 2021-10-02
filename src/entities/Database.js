@@ -26,9 +26,8 @@ class Database extends EventEmitter {
         this.images[id] = new Image(
           image.size,
           image.mimeType,
-          image.body,
           image.id,
-          image.createdAt
+          image.uploadedAt
         )
       }
     }
@@ -45,9 +44,8 @@ class Database extends EventEmitter {
     const image = new Image(
       imageObject.size,
       imageObject.mimeType,
-      imageObject.body,
       imageObject.id,
-      imageObject.createdAt
+      imageObject.uploadedAt
     )
 
     await image.remove()
@@ -65,16 +63,15 @@ class Database extends EventEmitter {
     const image = new Image(
       imageObject.size,
       imageObject.mimeType,
-      imageObject.body,
       imageObject.id,
-      imageObject.createdAt
+      imageObject.uploadedAt
     )
     return image
   }
 
   find() {
     let allImages = Object.values(this.images)
-    allImages.sort((a, b) => a.createdAt - b.createdAt)
+    allImages.sort((a, b) => a.uploadedAt - b.uploadedAt)
 
     return allImages
   }

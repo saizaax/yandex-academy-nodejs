@@ -1,15 +1,14 @@
 const path = require("path")
-const { writeFile, unlink } = require("fs").promises
+const { readFile, writeFile, unlink } = require("fs").promises
 const { createReadStream } = require("fs")
 const { imageFolder } = require("../config/config")
 const { generateId } = require("../utils/generateId")
 
 module.exports = class Image {
-  constructor(size, mimeType, body, id, uploadedAt) {
+  constructor(size, mimeType, id, uploadedAt) {
     this.id = id || generateId()
     this.uploadedAt = uploadedAt || Date.now()
     this.size = size
-    this.body = body
     this.mimeType = mimeType
     this.name = `${this.id}.jpeg`
   }
@@ -46,13 +45,28 @@ module.exports = class Image {
     }
   }
 
+  async toPublicJSON() {
+    try {
+      const imageBuffer = await readFile(this.getPath())
+
+      return {
+        id: this.id,
+        uploadedAt: this.uploadedAt,
+        size: this.size,
+        body: imageBuffer,
+        mimeType: this.mimeType,
+      }
+    } catch (err) {
+      console.log("Get file-buffer error: file doesn't exist")
+    }
+  }
+
   toJSON() {
     return {
       id: this.id,
-      createdAt: this.uploadedAt,
+      uploadedAt: this.uploadedAt,
       size: this.size,
-      body: this.body,
-      mimeType: this.mimeType
+      mimeType: this.mimeType,
     }
   }
 }

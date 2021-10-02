@@ -12,13 +12,13 @@ module.exports = async (req, res, next) => {
 
     if (file.mimetype !== "image/jpeg" && file.mimetype !== "image/png") {
       throw new BadRequestApiError(
-        "Prohibited format, only .jpeg images are accepted"
+        "Prohibited format, only .jpeg and .png images are accepted"
       )
     }
 
     const { buffer, size, mimetype } = file
 
-    const image = new Image(size, mimetype, buffer)
+    const image = new Image(size, mimetype)
     await database.insert(image, buffer)
 
     return res.json({ id: image.id })

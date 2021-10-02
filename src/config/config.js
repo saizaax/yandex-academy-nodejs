@@ -8,5 +8,5 @@ module.exports = {
   databaseFolder: databaseFolder,
   databaseDump: databaseDump,
   imageFolder: imageFolder,
-  PORT: 8080,
+  PORT: process.env.PORT || 8080,
 }
