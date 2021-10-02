@@ -10,7 +10,7 @@ module.exports = async (req, res, next) => {
       throw new BadRequestApiError("No file attached")
     }
 
-    if (file.mimetype !== "image/jpeg") {
+    if (file.mimetype !== "image/jpeg" || file.mimetype !== "image/png") {
       throw new BadRequestApiError(
         "Prohibited format, only .jpeg images are accepted"
       )
